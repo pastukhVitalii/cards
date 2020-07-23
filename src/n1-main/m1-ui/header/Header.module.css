@@ -1,0 +1,26 @@
+header {
+    background-color: aliceblue;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header a {
+    padding: 0 20px;
+}
+.logo {
+    height: 45px;
+    position: absolute;
+    left: 20px;
+    top: 0px;
+}
+.loginBlock {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.loginBlock a {
+}
