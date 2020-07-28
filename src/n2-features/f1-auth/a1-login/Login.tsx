@@ -17,6 +17,7 @@ const Login = (props: any) => {
         <>
             <div >
                 <Input type={inputStyle} placeholder={'placeholder'} value={null} onChange={onChange}/>
+                <div><input type='checkbox'/>Remeber me</div>
                 <Button type={btnStyle} name={'name'}  onClick={onClick} spiner={true}/> {/*primary danger loading*/}
             </div>
         </>
