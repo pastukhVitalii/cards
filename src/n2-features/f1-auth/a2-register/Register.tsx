@@ -14,7 +14,7 @@ const Register = (props: any) => {
     }, [setEmail])
 
     const setPasswordCallback = useCallback((e) => {
-        setEmail(e.currentTarget.value)
+        setPassword(e.currentTarget.value)
     }, [setPassword])
 
 
