@@ -1,16 +1,21 @@
 import React, {useCallback, useState} from "react";
 import Input from "../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../n1-main/m1-ui/common/button/Button";
+import {authAPI} from "../../../n1-main/m3-dal/authAPI"
+
+type LoginPropsType ={
+
+}
 
 const Login = (props: any) => {
 
-    const [email, setEmail] = useState();
-    const [pass, setPass] = useState();
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
 
 
     const signIn = () => {
-        alert('fdgfhf')
+        authAPI.login(email, pass, rememberMe)
     }
 
 
@@ -21,6 +26,10 @@ const Login = (props: any) => {
     const setPasswordCallBack = useCallback((e) => {
         setPass(e.currentTarget.value)
     }, [setPass]);
+
+    const setRememberMeBack = useCallback((e) => {
+        setRememberMe(e.currentTarget.checked)
+    }, [setRememberMe]);
 
 
     let btnStyle = '' || 'primary';
@@ -37,7 +46,7 @@ const Login = (props: any) => {
                     </div>
                     <div>
                         <label>
-                            <input type={'checkbox'}/> Remember me
+                            <input type={'checkbox'} checked={rememberMe}/> Remember me
                         </label>
                     </div>
                     <div><a href="">Forgot?</a></div>

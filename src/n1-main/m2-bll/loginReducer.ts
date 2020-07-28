@@ -1,10 +1,35 @@
+import {authAPI} from "../m3-dal/authAPI"
 
+
+const SET_LOGIN_DATA = 'SET_LOGIN_DATA';
 type InitialStateType = typeof initialState;
 
 const initialState = {
-
+    email: '',
+    password: '',
+    rememberMe: false
 }
 
 export const loginReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
-        return state
-}
+    switch (action.type) {
+        case SET_LOGIN_DATA:
+            return {
+                ...state,
+                ...action.payload,
+            }
+
+        default:
+            return state
+    }
+   //ActionCr
+    export const setLoginData = (email: string, pass: string, rememberMe: string) => ({
+        type: SET_LOGIN_DATA, payload:
+            {email, password, rememberMe}
+    });
+    //ThunkCr
+    export const login = (email, password, rememberMe) => (dispatch: any, getState: any) => {
+
+        authAPI.login(email, password, rememberMe)
+            .then(response => {
+                dispatch(setLoginData(email, password, rememberMe))
+            }
