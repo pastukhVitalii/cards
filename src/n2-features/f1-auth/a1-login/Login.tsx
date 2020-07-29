@@ -47,7 +47,7 @@ const Login = (props: any) => {
                     </div>
                     <div>
                         <label>
-                            <input type={'checkbox'} checked={rememberMe}/> Remember me
+                            <input type={'checkbox'} checked={rememberMe} onChange={setRememberMeCallBack}/> Remember me
                         </label>
                     </div>
                     <div><a href="">Forgot?</a></div>
