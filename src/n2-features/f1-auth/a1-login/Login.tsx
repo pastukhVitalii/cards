@@ -1,7 +1,8 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Input from "../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../n1-main/m1-ui/common/button/Button";
-import {authAPI} from "../../../n1-main/m3-dal/authAPI"
+import {signIn} from "../../../n1-main/m2-bll/loginReducer"
+import {useDispatch} from "react-redux";
 
 type LoginPropsType ={
 
@@ -14,11 +15,6 @@ const Login = (props: any) => {
     const [rememberMe, setRememberMe] = useState(false);
 
 
-    const signIn = () => {
-        authAPI.login(email, pass, rememberMe)
-    }
-
-
     const setEmailCallBack = useCallback((e) => {
         setEmail(e.currentTarget.value)
     }, [setEmail]);
@@ -27,9 +23,14 @@ const Login = (props: any) => {
         setPass(e.currentTarget.value)
     }, [setPass]);
 
-    const setRememberMeBack = useCallback((e) => {
+    const setRememberMeCallBack = useCallback((e) => {
         setRememberMe(e.currentTarget.checked)
     }, [setRememberMe]);
+
+    const dispatch = useDispatch()
+    const signInCallback = useCallback(
+        () => dispatch(signIn(email, pass, rememberMe)),
+        [email, pass, rememberMe]);
 
 
     let btnStyle = '' || 'primary';
@@ -50,7 +51,7 @@ const Login = (props: any) => {
                         </label>
                     </div>
                     <div><a href="">Forgot?</a></div>
-                    <Button type={btnStyle} name={'Login'} onClick={signIn}
+                    <Button type={btnStyle} name={'Login'} onClick={signInCallback}
                             spiner={false} disable={false}/> {/*primary danger loading*/}
                 </form>
 
