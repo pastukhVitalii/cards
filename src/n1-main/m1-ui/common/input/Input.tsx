@@ -1,7 +1,14 @@
 import React from 'react';
 import './Input.css';
 
-const Input = (props) => {
+type OwnPropTypes = {
+    value: string
+    type: string
+    placeholder: string
+    onChange: (e: any) => void
+}
+
+const Input = (props: OwnPropTypes) => {
     // let errorClass = this.props.state.error ? 'error' : '';
     return (
       <div className='input'>

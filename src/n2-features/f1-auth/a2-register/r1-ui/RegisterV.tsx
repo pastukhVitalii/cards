@@ -1,12 +1,13 @@
 import React, {useCallback, useState} from "react";
+import { useDispatch } from "react-redux";
+import {signUp} from "../../../../n1-main/m2-bll/registrationReducer";
 import Input from "../../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../../n1-main/m1-ui/common/button/Button";
-import { useDispatch } from "react-redux";
 
 const RegisterV = (props: any) => {
 
-    const [email, setEmail] = useState();
-    const [pass, setPass] = useState();
+    const [email, setEmail] = useState('pastuh3@gmail.com');
+    const [pass, setPass] = useState('!Asd1234');
 
     const setEmailCallback = useCallback((e) => {
         setEmail(e.currentTarget.value)
@@ -17,10 +18,10 @@ const RegisterV = (props: any) => {
     }, [setPass]);
 
     const dispatch = useDispatch();
-    /*const signUpCallback = useCallback(
+    const signUpCallback = useCallback(
         () => dispatch(signUp(email, pass)),
         [email, pass, dispatch]
-    );*/
+    );
 
     let inputEmailStyle = '' || 'error';
     let inputPassStyle = '' || 'error';
@@ -30,9 +31,9 @@ const RegisterV = (props: any) => {
         <>
             <div >
                 Sigin up
-                <Input type={inputEmailStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallback}/>
-                <Input type={inputPassStyle} placeholder={'password'} value={pass} onChange={setPasswordCallback}/>
-                <Button type={btnStyle} name={'Login'} spiner={false} disable={false} onClick={{/*signUpCallback*/}} />
+                <Input type={inputEmailStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallback} />
+                <Input type={inputPassStyle} placeholder={'password'} value={pass} onChange={setPasswordCallback} />
+                <Button type={btnStyle} name={'Login'} spiner={false} disable={false} onClick={signUpCallback} />
             </div>
         </>
     );
