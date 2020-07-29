@@ -21,11 +21,8 @@ export const registerApi = {
     }*/
 
     signUp: async (email: string, password: string) => {
-        debugger
         const response = await instance.post<SignUpDataType>('/auth/register', {email, password});
-        debugger
         return response.data;
-    },
-
+    }
 }
 

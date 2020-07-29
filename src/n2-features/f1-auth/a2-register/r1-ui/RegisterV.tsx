@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from "react";
 import { useDispatch } from "react-redux";
-import {signUp} from "../../../../n1-main/m2-bll/registrationReducer";
 import Input from "../../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../../n1-main/m1-ui/common/button/Button";
+import {signUp} from "../../../../n1-main/m2-bll/registrationReducer";
 
 const RegisterV = (props: any) => {
 
