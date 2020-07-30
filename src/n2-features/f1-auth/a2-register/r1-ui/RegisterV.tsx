@@ -1,8 +1,11 @@
 import React, {useCallback, useState} from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Input from "../../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../../n1-main/m1-ui/common/button/Button";
 import {signUp} from "../../../../n1-main/m2-bll/registrationReducer";
+import {AppStateType} from "../../../../n1-main/m2-bll/store";
+import { Redirect } from "react-router-dom";
+import {login} from "../../../../n1-main/m1-ui/routes/routes";
 
 const RegisterV = (props: any) => {
 
@@ -23,6 +26,9 @@ const RegisterV = (props: any) => {
         [email, pass, dispatch]
     );
 
+    const error = useSelector((state: AppStateType) => state.registration.error)
+
+
     let inputEmailStyle = '' || 'error';
     let inputPassStyle = '' || 'error';
     let btnStyle = '' || 'primary';
@@ -30,6 +36,7 @@ const RegisterV = (props: any) => {
     return (
         <>
             <div >
+                {error ? <Redirect to={login}/> : false}
                 Sigin up
                 <Input type={inputEmailStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallback} />
                 <Input type={inputPassStyle} placeholder={'password'} value={pass} onChange={setPasswordCallback} />
