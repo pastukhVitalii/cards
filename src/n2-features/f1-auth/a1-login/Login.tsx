@@ -1,24 +1,27 @@
 import React, {useCallback, useState} from "react";
 import Input from "../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../n1-main/m1-ui/common/button/Button";
+import {logIn} from "../../../n1-main/m2-bll/loginReducer";
+import {useDispatch} from "react-redux";
 
 const Login = (props: any) => {
 
-    const [email, setEmail] = useState();
-    const [pass, setPass] = useState();
+    const [email, setEmail] = useState<string>('');
+    const [pass, setPass] = useState<string>('');
     const [rememberMe, setRememberMe] = useState(false);
 
 
-    const signIn = () => {
-        alert('fdgfhf')
-    }
+    const dispatch = useDispatch();
+    const signIn =  useCallback(() => {
+        dispatch(logIn(email, pass, rememberMe))
+    }, [email, pass, rememberMe])
 
 
-    const setEmailCallBack = useCallback((e) => {
+    const setEmailCallBack = useCallback((e:  React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
     }, [setEmail]);
 
-    const setPasswordCallBack = useCallback((e) => {
+    const setPasswordCallBack = useCallback((e:  React.ChangeEvent<HTMLInputElement>) => {
         setPass(e.currentTarget.value)
     }, [setPass]);
 
@@ -37,7 +40,7 @@ const Login = (props: any) => {
                     </div>
                     <div>
                         <label>
-                            <input type={'checkbox'}/> Remember me
+                            <input type={'checkbox'} checked={rememberMe} onChange={() => setRememberMe(!rememberMe)}/> Remember me
                         </label>
                     </div>
                     <div><a href="">Forgot?</a></div>
