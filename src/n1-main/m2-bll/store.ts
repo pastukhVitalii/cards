@@ -14,6 +14,10 @@ let rootReducer = combineReducers({
     newPass: newPassReducer
 })
 
+type RootReducerType = typeof rootReducer;
+
+export type AppStateType = ReturnType<RootReducerType>
+
 export type InferActionTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
