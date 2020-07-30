@@ -1,17 +1,14 @@
 import React, {useCallback, useState} from "react";
 import Input from "../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../n1-main/m1-ui/common/button/Button";
+import {useDispatch} from "react-redux";
+import { signIn } from "../../../n1-main/m2-bll/loginReducer";
 
 const Login = (props: any) => {
 
     const [email, setEmail] = useState();
     const [pass, setPass] = useState();
     const [rememberMe, setRememberMe] = useState(false);
-
-
-    const signIn = () => {
-        alert('fdgfhf')
-    }
 
 
     const setEmailCallBack = useCallback((e) => {
@@ -22,6 +19,15 @@ const Login = (props: any) => {
         setPass(e.currentTarget.value)
     }, [setPass]);
 
+    const setRememberMeCallBack = useCallback((e) => {
+        setRememberMe(e.currentTarget.checked)
+    }, [setRememberMe]);
+
+    const dispatch = useDispatch();
+    const signInCallback = useCallback(
+        () => dispatch(signIn(email, pass, rememberMe)),
+        [email, pass, rememberMe, dispatch]
+    );
 
     let btnStyle = '' || 'primary';
     let inputStyle = '' || 'error';
@@ -37,11 +43,11 @@ const Login = (props: any) => {
                     </div>
                     <div>
                         <label>
-                            <input type={'checkbox'}/> Remember me
+                            <input type={'checkbox'} checked={rememberMe} onClick={setRememberMeCallBack}/> Remember me
                         </label>
                     </div>
                     <div><a href="">Forgot?</a></div>
-                    <Button type={btnStyle} name={'Login'} onClick={signIn}
+                    <Button type={btnStyle} name={'Login'} onClick={signInCallback}
                             spiner={false} disable={false}/> {/*primary danger loading*/}
                 </form>
 
