@@ -6,14 +6,14 @@ import {signUp} from "../../../../n1-main/m2-bll/registrationReducer";
 
 const RegisterV = (props: any) => {
 
-    const [email, setEmail] = useState('pastuh3@gmail.com');
-    const [pass, setPass] = useState('!Asd1234');
+    const [email, setEmail] = useState<string>('pastuh3@gmail.com');
+    const [pass, setPass] = useState<string>('!Asd1234');
 
-    const setEmailCallback = useCallback((e) => {
+    const setEmailCallback = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
     }, [setEmail]);
 
-    const setPasswordCallback = useCallback((e) => {
+    const setPasswordCallback = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setPass(e.currentTarget.value)
     }, [setPass]);
 
