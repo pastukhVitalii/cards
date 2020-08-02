@@ -1,22 +1,34 @@
 import {authAPI} from "../m3-dal/authAPI";
 import {AppStateType} from "./store";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {act} from "react-dom/test-utils";
 
-const SET_DATA = "CARDS/LOGINREDUCER/SET_DATA"
+const LOGIN_SUCCESS = "CARDS/LOGINREDUCER/LOGIN_SUCCESS"
+const LOGIN_ERROR = "CARDS/LOGINREDUCER/LOGIN_ERROR"
+
 type InitialStateType = typeof initialState;
 
-const initialState = {
-
+export const initialState = {
+        error: "",
+        errorMessage: "",
+        isAuth: false,
+        disableBtn: false
 }
 
 export const loginReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
         switch (action.type) {
-                case SET_DATA: {
+                case LOGIN_SUCCESS: {
                         return {
                                 ...state,
-                                email: action.email,
-                                password: action.password,
-                                rememberMe: action.rememberMe
+                                isAuth: action.isAuth
+                        }
+                }
+                case LOGIN_ERROR: {
+                        return {
+                                ...state,
+                                isAuth: action.isAuth,
+                                errorMessage: action.errorMessage,
+
                         }
                 }
 
@@ -29,7 +41,7 @@ export const loginReducer = (state: InitialStateType = initialState, action: any
 //action
 
 type SetDataType = {
-        type: typeof SET_DATA
+        type: typeof LOGIN_SUCCESS
         email: string
         password: string
         rememberMe:boolean
@@ -37,10 +49,8 @@ type SetDataType = {
 
 const setData = (email: string, password: string, rememberMe:boolean): SetDataType => {
     return {
-            type: SET_DATA,
-            email,
-            password,
-            rememberMe
+            type: LOGIN_SUCCESS,
+            isAuth: true
     }
 }
 
@@ -51,6 +61,6 @@ type DispatchType = ThunkDispatch<AppStateType, unknown, SetDataType>;
 export const  signIn = (email: string, password: string, rememberMe:boolean): ThunkType => (dispatch: DispatchType) => {
         authAPI.login(email, password, rememberMe)
             .then(data => {
-                    dispatch(setData(email, password, rememberMe))
+                    dispatch(setData(isAuth))
             })
 }

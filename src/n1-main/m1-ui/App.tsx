@@ -17,7 +17,8 @@ const App = () => {
             <Provider store={store}>
                 <div className="App">
                     <Header/>
-                    <div className='main'><Route path={profile} component={Profile}/>
+                    <div className='main'>
+                        <Route path={profile} component={Profile}/>
                         <Route path={login} component={Login}/>
                         <Route path={registration} component={RegisterV}/>
                         <Route path={restore} component={Restore}/>

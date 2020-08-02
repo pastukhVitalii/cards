@@ -1,10 +1,13 @@
 import React, {useCallback, useState} from "react";
 import Input from "../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../n1-main/m1-ui/common/button/Button";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { signIn } from "../../../n1-main/m2-bll/loginReducer";
+import { login } from "../../../n1-main/m2-bll/loginReducer";
 
 const Login = (props: any) => {
+
+    const {} = useSelector((state) =>{return state.login})
 
     const [email, setEmail] = useState();
     const [pass, setPass] = useState();
@@ -48,7 +51,7 @@ const Login = (props: any) => {
                     </div>
                     <div><a href="">Forgot?</a></div>
                     <Button type={btnStyle} name={'Login'} onClick={signInCallback}
-                            spiner={false} disable={false}/> {/*primary danger loading*/}
+                            spiner={false} disable={disableBtn}/> {/*primary danger loading*/}
                 </form>
 
             </div>
