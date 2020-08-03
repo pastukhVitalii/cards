@@ -20,7 +20,8 @@ export const loginReducer = (state: InitialStateType = initialState, action: any
                 case LOGIN_SUCCESS: {
                         return {
                                 ...state,
-                                isAuth: action.isAuth
+                                isAuth: true,
+                                disableBtn: true
                         }
                 }
                 case LOGIN_ERROR: {
@@ -28,7 +29,6 @@ export const loginReducer = (state: InitialStateType = initialState, action: any
                                 ...state,
                                 isAuth: action.isAuth,
                                 errorMessage: action.errorMessage,
-
                         }
                 }
 
@@ -38,29 +38,21 @@ export const loginReducer = (state: InitialStateType = initialState, action: any
         }
      }
 
-//action
 
-type SetDataType = {
-        type: typeof LOGIN_SUCCESS
-        email: string
-        password: string
-        rememberMe:boolean
-}
-
-const setData = (email: string, password: string, rememberMe:boolean): SetDataType => {
+const setData = () => {
     return {
             type: LOGIN_SUCCESS,
-            isAuth: true
     }
 }
 
-type ThunkType = ThunkAction<void, AppStateType, unknown, SetDataType>;
+type ThunkType = ThunkAction<void, AppStateType, unknown, any>;
 
-type DispatchType = ThunkDispatch<AppStateType, unknown, SetDataType>;
+type DispatchType = ThunkDispatch<AppStateType, unknown, any>;
+
 //thunk
 export const  signIn = (email: string, password: string, rememberMe:boolean): ThunkType => (dispatch: DispatchType) => {
         authAPI.login(email, password, rememberMe)
-            .then(data => {
-                    dispatch(setData(isAuth))
+            .then(res => {
+                    dispatch(setData())
             })
 }

@@ -3,11 +3,12 @@ import Input from "../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../n1-main/m1-ui/common/button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import { signIn } from "../../../n1-main/m2-bll/loginReducer";
-import { login } from "../../../n1-main/m2-bll/loginReducer";
+import {AppStateType} from "../../../n1-main/m2-bll/store";
+import { Redirect } from "react-router-dom";
 
 const Login = (props: any) => {
 
-    const {} = useSelector((state) =>{return state.login})
+    const {error, errorMessage, isAuth, disableBtn} = useSelector((state: AppStateType) => state.login)
 
     const [email, setEmail] = useState();
     const [pass, setPass] = useState();
@@ -31,6 +32,10 @@ const Login = (props: any) => {
         () => dispatch(signIn(email, pass, rememberMe)),
         [email, pass, rememberMe, dispatch]
     );
+
+    if (isAuth) {
+        return <Redirect to='/profile'/>
+    }
 
     let btnStyle = '' || 'primary';
     let inputStyle = '' || 'error';
