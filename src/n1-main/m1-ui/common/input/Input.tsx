@@ -17,12 +17,6 @@ const Input = (props: OwnPropTypes) => {
                value={props.value}
                onChange={props.onChange}
                autoFocus={true}/>
-               {/*<input type="text" placeholder='Write name'
-               className={css[errorClass]}
-               onKeyPress={this.props.onKeyPress}
-               onChange={this.props.changeTitle}
-               value={this.props.state.title}
-               autoFocus={true}/>*/}
       </div>
     );
 }
