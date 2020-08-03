@@ -22,6 +22,7 @@ const App = () => {
                         <Route path={registration} component={RegisterV}/>
                         <Route path={restore} component={Restore}/>
                         <Route path={newPass} component={NewPass}/>
+                        <Route path='/' render={() => <div>Error 404</div> } exact={true}/>
                     </div>
                 </div>
             </Provider>

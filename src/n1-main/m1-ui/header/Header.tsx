@@ -15,6 +15,7 @@ const Header = (props: any) => {
             <NavLink to={registration}> Sign up </NavLink>
             <NavLink to={restore}> Restore password </NavLink>
             <NavLink to={newPass}> New password </NavLink>
+            <NavLink to={'/'}> Error 404 </NavLink>
             <div className={css.loginBlock}>
                 {props.isAuth
                     ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>

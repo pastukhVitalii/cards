@@ -9,7 +9,7 @@ const initialState = {
     error: ''
 }
 
-export const registrationReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
+export const registrationReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case 'CARDS_REDUCER/REGISTER_SUCCESS': {
             return {
@@ -37,16 +37,6 @@ export const signUp = (email: string, password: string) => async (dispatch: Disp
         dispatch(actions.registrationError(e.response.data.error));
         alert(e.response.data.error)
     }
-    /*const res = await registerApi.signUp(email, password);
-    if (res.error) {
-        debugger
-        dispatch(actions.registrationError(res.error));
-        alert(res.error)
-    }
-    else {
-        dispatch(actions.registrationSuccess(true));
-        alert('you are registered')
-    }*/
 }
 
 // Action

@@ -13,7 +13,6 @@ const Login = (props: any) => {
         alert('fdgfhf')
     }
 
-
     const setEmailCallBack = useCallback((e) => {
         setEmail(e.currentTarget.value)
     }, [setEmail]);
