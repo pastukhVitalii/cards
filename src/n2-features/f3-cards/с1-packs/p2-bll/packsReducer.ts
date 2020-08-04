@@ -1,4 +1,3 @@
-import {registerApi} from "../../../../n1-main/m3-dal/registerApi";
 import {Dispatch} from "redux";
 import {InferActionTypes} from "../../../../n1-main/m2-bll/store";
 
@@ -21,7 +20,6 @@ const initialState = {
 
 export const packsReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
 
-    debugger;
     return state
     /*switch (action.type) {
         case 'CARDS_REDUCER/REGISTER_SUCCESS': {
@@ -43,7 +41,7 @@ export const packsReducer = (state: InitialStateType = initialState, action: Act
 
 export const signUp = (email: string, password: string) => async (dispatch: Dispatch<ActionType>, getState: any) => {
 
-
+    // dispatch((actions.setPacks()))
     /*try {
         const res = await registerApi.signUp(email, password);
         dispatch(actions.registrationSuccess(true));

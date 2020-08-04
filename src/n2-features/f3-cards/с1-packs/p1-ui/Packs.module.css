@@ -1,0 +1,28 @@
+.mainContent {
+    width: 100%;
+}
+
+.tableHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border: 1px red solid;
+}
+
+.tableHeader div {
+    margin: 10px 0;
+}
+
+.packsRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px black solid;
+}
+
+.gradeColumn .nameColumn {
+    width: 30%;
+}
+
+
