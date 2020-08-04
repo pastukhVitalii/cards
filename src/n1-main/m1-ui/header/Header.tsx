@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import css from './Header.module.css';
-import {login, newPass, profile, registration, restore} from "../routes/routes";
+import {login, newPass, packs, profile, registration, restore} from "../routes/routes";
 
 const Header = (props: any) => {
     return (
@@ -15,6 +15,8 @@ const Header = (props: any) => {
             <NavLink to={registration}> Sign up </NavLink>
             <NavLink to={restore}> Restore password </NavLink>
             <NavLink to={newPass}> New password </NavLink>
+            <NavLink to={packs}> Packs </NavLink>
+            <NavLink to={'/'}> Error 404 </NavLink>
             <div className={css.loginBlock}>
                 {props.isAuth
                     ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
