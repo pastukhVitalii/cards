@@ -2,13 +2,14 @@ import React, {useCallback, useState} from "react";
 import Input from "../../../n1-main/m1-ui/common/input/Input";
 import Button from "../../../n1-main/m1-ui/common/button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import { signIn } from "../../../n1-main/m2-bll/loginReducer";
+import {signIn} from "../../../n1-main/m2-bll/loginReducer";
 import {AppStateType} from "../../../n1-main/m2-bll/store";
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
+import Preloader from "../../../n1-main/m1-ui/common/Preloader"
 
 const Login = (props: any) => {
 
-    const {error, errorMessage, isAuth, disableBtn} = useSelector((state: AppStateType) => state.login)
+    const {isFetching, errorMessage, isAuth, isDisabled} = useSelector((state: AppStateType) => state.login)
 
     const [email, setEmail] = useState();
     const [pass, setPass] = useState();
@@ -36,28 +37,30 @@ const Login = (props: any) => {
     if (isAuth) {
         return <Redirect to='/profile'/>
     }
+    if(isFetching) {
+        return {Preloader}
+    }
 
     let btnStyle = '' || 'primary';
     let inputStyle = '' || 'error';
     return (
+
         <>
             <div>
-                <form action="">
-                    <div>
-                        <Input type={inputStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallBack}/>
-                    </div>
-                    <div>
-                        <Input type={inputStyle} placeholder={'password'} value={pass} onChange={setPasswordCallBack}/>
-                    </div>
-                    <div>
-                        <label>
-                            <input type={'checkbox'} checked={rememberMe} onClick={setRememberMeCallBack}/> Remember me
-                        </label>
-                    </div>
-                    <div><a href="">Forgot?</a></div>
-                    <Button type={btnStyle} name={'Login'} onClick={signInCallback}
-                            spiner={false} disable={disableBtn}/> {/*primary danger loading*/}
-                </form>
+                <div>
+                    <Input type={inputStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallBack}/>
+                </div>
+                <div>
+                    <Input type={inputStyle} placeholder={'password'} value={pass} onChange={setPasswordCallBack}/>
+                </div>
+                <div>
+                    <label>
+                        <input type={'checkbox'} checked={rememberMe} onClick={setRememberMeCallBack}/> Remember me
+                    </label>
+                </div>
+                <div><a href="">Forgot?</a></div>
+                <Button type={btnStyle} name={'Login'} onClick={signInCallback}
+                        spiner={isFetching} disable={isDisabled}/> {/*primary danger loading*/}
 
             </div>
         </>
