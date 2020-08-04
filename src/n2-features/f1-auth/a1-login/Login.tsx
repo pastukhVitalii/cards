@@ -38,7 +38,7 @@ const Login = (props: any) => {
         return <Redirect to='/profile'/>
     }
     if(isFetching) {
-        return {Preloader}
+        return <Preloader/>
     }
 
     let btnStyle = '' || 'primary';
@@ -47,6 +47,7 @@ const Login = (props: any) => {
 
         <>
             <div>
+                {errorMessage}
                 <div>
                     <Input type={inputStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallBack}/>
                 </div>

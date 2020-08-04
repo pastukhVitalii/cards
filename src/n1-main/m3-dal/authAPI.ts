@@ -18,14 +18,14 @@ type ResponseLoginType = {
 }
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:7542"
+    baseURL: "http://localhost:7542/1.0",
 })
 
 export const authAPI = {
     login(email: string, password: string, rememberMe: boolean) {
-        return axiosInstance.post<ResponseLoginType>("/auth/login/", {
-            email: "e",
-            password: "p",
+        return axiosInstance.post<ResponseLoginType>("/auth/login", {
+            email: "sdcsc@dfvdf.com",
+            password: "psdcsdcsdc2342",
             rememberMe: false})
             .then(r=> r.data)
     }
