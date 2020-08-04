@@ -1,7 +1,6 @@
 import {authAPI} from "../m3-dal/authAPI";
 import {AppStateType} from "./store";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {act} from "react-dom/test-utils";
 
 const LOGIN_SUCCESS = "CARDS/LOGINREDUCER/LOGIN_SUCCESS"
 const LOGIN_ERROR = "CARDS/LOGINREDUCER/LOGIN_ERROR"
@@ -9,7 +8,6 @@ const LOGIN_ERROR = "CARDS/LOGINREDUCER/LOGIN_ERROR"
 type InitialStateType = typeof initialState;
 
 export const initialState = {
-
     errorMessage: "",
     isAuth: false,
     isDisabled: false,
@@ -33,7 +31,6 @@ export const loginReducer = (state: InitialStateType = initialState, action: any
                 errorMessage: action.errorMessage,
             }
         }
-
         default: {
             return state
         }
@@ -66,7 +63,7 @@ export const signIn = (email: string, password: string, rememberMe: boolean): Th
         .then(res => {
             dispatch(loginSuccsess())
         }).catch((e) => {
-            // if()
+        // if()
         dispatch(showError())
     })
 }

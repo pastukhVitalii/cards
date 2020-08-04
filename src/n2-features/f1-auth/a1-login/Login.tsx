@@ -5,16 +5,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {signIn} from "../../../n1-main/m2-bll/loginReducer";
 import {AppStateType} from "../../../n1-main/m2-bll/store";
 import {Redirect} from "react-router-dom";
-import Preloader from "../../../n1-main/m1-ui/common/Preloader"
+import Preloader from "../../../n1-main/m1-ui/common/Preloader";
 
 const Login = (props: any) => {
 
     const {isFetching, errorMessage, isAuth, isDisabled} = useSelector((state: AppStateType) => state.login)
 
-    const [email, setEmail] = useState();
-    const [pass, setPass] = useState();
+    const [email, setEmail] = useState('pastuh3@gmail.com');
+    const [pass, setPass] = useState('!Asd1234');
     const [rememberMe, setRememberMe] = useState(false);
-
 
     const setEmailCallBack = useCallback((e) => {
         setEmail(e.currentTarget.value)
@@ -34,12 +33,13 @@ const Login = (props: any) => {
         [email, pass, rememberMe, dispatch]
     );
 
-    if (isAuth) {
+    /*if (isAuth) {
         return <Redirect to='/profile'/>
-    }
-    if(isFetching) {
+    }*/
+
+    /*if(isFetching) {
         return {Preloader}
-    }
+    }*/
 
     let btnStyle = '' || 'primary';
     let inputStyle = '' || 'error';
@@ -63,6 +63,23 @@ const Login = (props: any) => {
                         spiner={isFetching} disable={isDisabled}/> {/*primary danger loading*/}
 
             </div>
+            {/*{isFetching? <Preloader/>: <div>
+                <div>
+                    <Input type={inputStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallBack}/>
+                </div>
+                <div>
+                    <Input type={inputStyle} placeholder={'password'} value={pass} onChange={setPasswordCallBack}/>
+                </div>
+                <div>
+                    <label>
+                        <input type={'checkbox'} checked={rememberMe} onClick={setRememberMeCallBack}/> Remember me
+                    </label>
+                </div>
+                <div><a href="">Forgot?</a></div>
+                <Button type={btnStyle} name={'Login'} onClick={signInCallback}
+                        spiner={isFetching} disable={isDisabled}/> primary danger loading
+
+            </div>}*/}
         </>
     );
 }
