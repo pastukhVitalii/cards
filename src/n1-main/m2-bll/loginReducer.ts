@@ -55,20 +55,18 @@ const loginSuccsess = () => {
 }
 const showError = (errorMessage: string) => {
     return {
-        type: IS_FETCHING,
+        type: LOGIN_ERROR,
         errorMessage
     }
 }
 const preloader = (isFetching: boolean, isDisabled: boolean) => {
     return {
-        type: LOGIN_ERROR,
+        type: IS_FETCHING,
         isFetching,
         isDisabled
     }
 }
-const disableBtn = (isDisabled: boolean) => {
 
-}
 
 type ThunkType = ThunkAction<void, AppStateType, unknown, any>;
 
