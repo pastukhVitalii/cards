@@ -10,7 +10,6 @@ const IS_FETCHING = "CARDS/LOGINREDUCER/IS_FETCHING"
 type InitialStateType = typeof initialState;
 
 export const initialState = {
-
     errorMessage: "",
     isAuth: false,
     isDisabled: false,
@@ -66,6 +65,9 @@ const preloader = (isFetching: boolean, isDisabled: boolean) => {
         isFetching,
         isDisabled
     }
+}
+const disableBtn = (isDisabled: boolean) => {
+
 }
 
 type ThunkType = ThunkAction<void, AppStateType, unknown, any>;
