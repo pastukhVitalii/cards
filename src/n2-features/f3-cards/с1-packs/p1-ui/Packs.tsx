@@ -25,30 +25,29 @@ const Packs = React.memo((props: OwnPropsType) => {
     let btnStyle = '' || 'primary';
 
     let packsArr = packs.map(p => {
-        return <div className={css.packsRow}>
-            <div className={css.nameColumn}>{p.name}</div>
-            <div className={css.gradeColumn}>{p.grade}</div>
-            <div><Button name={'delete'} type={btnStyle} disable={true} onClick={delPacksOnClick}/>
-                <Button name={'update'} type={btnStyle} disable={true} onClick={delPacksOnClick}/>
+        return <tr>
+            <td className={css.column}>{p.name}</td>
+            <td className={css.column}>{p.grade}</td>
+            <td className={css.columnOpt}>
+                <Button name={'delete'} type={btnStyle} small={true} disable={true} onClick={delPacksOnClick}/>
+                <Button name={'update'} type={btnStyle} small={true} disable={true} onClick={delPacksOnClick}/>
                 <NavLink to='/'> Cards </NavLink>
-                <NavLink to='/'> Learn </NavLink></div>
-        </div>
+                <NavLink to='/'> Learn </NavLink>
+            </td>
+        </tr>
     })
     return (
         <>
             <div className={css.mainContent}>
                 <div>Packs page</div>
-                <div className={css.tableHeader}>
-                    <div className={css.gradeColumn}>Name packs</div>
-                    <div className={css.gradeColumn}>Grade</div>
-                    <div>Options</div>
-                </div>
-                <div>
-                    <div className={css.tableBody}>
-                        {packsArr}
-                    </div>
-                </div>
-
+                <table className={css.table}>
+                    <tr>
+                        <td className={css.column}>Packs</td>
+                        <td className={css.column}>Grade</td>
+                        <td className={css.columnOpt}>Option</td>
+                    </tr>
+                    {packsArr}
+                </table>
             </div>
         </>
     );

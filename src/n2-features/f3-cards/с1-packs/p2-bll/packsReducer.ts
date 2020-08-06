@@ -5,15 +5,20 @@ type InitialStateType = typeof initialState;
 
 const initialState = {
     packs: [
+       /* {
+            name: 'Name packs',
+            grade: 'Grade',
+            pack: {}
+        },*/
         {
             name: 'first pack',
             grade: '10',
-            pack:{}
+            pack: {}
         },
         {
             name: 'second pack',
             grade: '7',
-            pack:{}
+            pack: {}
         }
     ]
 }

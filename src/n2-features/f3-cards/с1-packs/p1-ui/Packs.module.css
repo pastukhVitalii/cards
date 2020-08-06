@@ -2,27 +2,32 @@
     width: 100%;
 }
 
-.tableHeader {
+.table {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    border: 1px red solid;
+    background-color: aquamarine;
 }
 
 .tableHeader div {
     margin: 10px 0;
 }
 
-.packsRow {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.column {
+    width: 30%;
     border: 1px black solid;
+    text-align: center;
 }
 
-.gradeColumn .nameColumn {
-    width: 30%;
+.columnOpt {
+    border: 1px black solid;
+    text-align: center;
+}
+
+.columnOpt a {
+    padding: 0 15px;
+}
+
+.columnOpt button {
+    margin: 0 15px !important;
 }
 
 

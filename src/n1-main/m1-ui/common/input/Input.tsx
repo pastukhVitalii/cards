@@ -22,5 +22,3 @@ const Input = (props: OwnPropTypes) => {
 }
 
 export default Input;
-
-//className={this.props.title === ''? 'error': ''}
