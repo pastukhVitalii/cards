@@ -1,22 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import css from './Packs.module.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../n1-main/m2-bll/store";
 import Button from "../../../../n1-main/m1-ui/common/button/Button";
-import {packs} from "../../../../n1-main/m1-ui/routes/routes";
 import {NavLink} from "react-router-dom";
+import {getPacksTh} from "../p2-bll/packsReducer";
 
 type OwnPropsType = {
-    email: string;
-    pass: string;
-
+    getPacks: () => void;
 }
 
 const Packs = React.memo((props: OwnPropsType) => {
 
     console.log('packs render');
+    const token = useSelector((state: AppStateType) => state.login.token);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getPacksTh(token))
+    }, [token, dispatch])
 
-    const {packs} = useSelector((store: AppStateType) => store.packs);
+    const {cardPacks} = useSelector((store: AppStateType) => store.packs);
 
     let delPacksOnClick = () => {
         alert('delete')
@@ -24,7 +27,7 @@ const Packs = React.memo((props: OwnPropsType) => {
 
     let btnStyle = '' || 'primary';
 
-    let packsArr = packs.map(p => {
+    let packsArr = cardPacks.map(p => {
         return <tr>
             <td className={css.column}>{p.name}</td>
             <td className={css.column}>{p.grade}</td>

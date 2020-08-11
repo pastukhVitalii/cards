@@ -5,7 +5,7 @@ import Button from "../../../../n1-main/m1-ui/common/button/Button";
 import {signUp} from "../../../../n1-main/m2-bll/registrationReducer";
 import {AppStateType} from "../../../../n1-main/m2-bll/store";
 import {login} from "../../../../n1-main/m1-ui/routes/routes";
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 type OwnPropsType = {
     email: string;
@@ -14,7 +14,7 @@ type OwnPropsType = {
     setPass: () => void;
 }
 
-const RegisterV = React.memo((props: OwnPropsType)=> {
+const RegisterV = React.memo((props: OwnPropsType) => {
 
     console.log('register render');
 
@@ -30,14 +30,13 @@ const RegisterV = React.memo((props: OwnPropsType)=> {
     }, [setPass]);
 
     const dispatch = useDispatch();
-    const signUpCallback = useCallback(
-        () => dispatch(signUp(email, pass)),
-        [email, pass, dispatch]
-    );
+    const signUpCallback = useCallback(() => {
+        dispatch(signUp(email, pass))
+    }, [email, pass, dispatch]);
 
     const error = useSelector((state: AppStateType) => state.registration.error);
     const success = useSelector((state: AppStateType) => state.registration.success);
-    if(success) {
+    if (success) {
         return <Redirect to={login}/>
     }
 
@@ -49,10 +48,10 @@ const RegisterV = React.memo((props: OwnPropsType)=> {
         <>
             <div>
                 Sigin up
-                {error? <div>{error}</div>: ''}
-                <Input type={inputEmailStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallback} />
-                <Input type={inputPassStyle} placeholder={'password'} value={pass} onChange={setPasswordCallback} />
-                <Button type={btnStyle} name={'Login'} spiner={false} disable={false} onClick={signUpCallback} />
+                {error ? <div>{error}</div> : ''}
+                <Input type={inputEmailStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallback}/>
+                <Input type={inputPassStyle} placeholder={'password'} value={pass} onChange={setPasswordCallback}/>
+                <Button type={btnStyle} name={'Login'} spiner={false} disable={false} onClick={signUpCallback}/>
             </div>
         </>
     );

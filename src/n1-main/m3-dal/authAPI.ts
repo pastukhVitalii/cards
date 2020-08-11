@@ -1,11 +1,5 @@
 import axios from "axios"
 
-type CommonApiType = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
-
 type ResponseLoginType = {
     email: string
     name: string
@@ -27,6 +21,8 @@ export const authAPI = {
             email,
             password,
             rememberMe})
-            .then(r=> r.data)
+            .then(res => {
+                return res
+            })
     }
 }

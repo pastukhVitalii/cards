@@ -1,6 +1,7 @@
 import {authAPI} from "../m3-dal/authAPI";
 import {AppStateType} from "./store";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import Cookies from 'js-cookie';
 
 const LOGIN_SUCCESS = "CARDS/LOGINREDUCER/LOGIN_SUCCESS"
 const LOGIN_ERROR = "CARDS/LOGINREDUCER/LOGIN_ERROR"
@@ -11,7 +12,8 @@ export const initialState = {
     errorMessage: "",
     isAuth: false,
     isDisabled: false,
-    isFetching: false
+    isFetching: false,
+    token: ''
 }
 
 export const loginReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
@@ -21,7 +23,8 @@ export const loginReducer = (state: InitialStateType = initialState, action: any
                 ...state,
                 isAuth: true,
                 isDisabled: true,
-                isFetching: true
+                isFetching: true,
+                token: action.token
             }
         }
         case LOGIN_ERROR: {
@@ -38,9 +41,10 @@ export const loginReducer = (state: InitialStateType = initialState, action: any
 }
 
 
-const loginSuccsess = () => {
+const loginSuccsess = (token: string) => {
     return {
         type: LOGIN_SUCCESS,
+        token
     }
 }
 const showError = () => {
@@ -58,12 +62,22 @@ type ThunkType = ThunkAction<void, AppStateType, unknown, any>;
 type DispatchType = ThunkDispatch<AppStateType, unknown, any>;
 
 //thunk
-export const signIn = (email: string, password: string, rememberMe: boolean): ThunkType => (dispatch: DispatchType) => {
-    authAPI.login(email, password, rememberMe)
+export const signIn = (email: string, password: string, rememberMe: boolean): ThunkType => async (dispatch: DispatchType) => {
+    try {
+        const res = await authAPI.login(email, password, rememberMe)
+        Cookies.set('token', res.data.token)
+        // const token = Cookies.get('token')
+        dispatch(loginSuccsess(res.data.token))
+    } catch (e) {
+        dispatch(showError())
+        alert(e.response.data.error)
+    }
+    /*authAPI.login(email, password, rememberMe)
         .then(res => {
+
             dispatch(loginSuccsess())
         }).catch((e) => {
         // if()
         dispatch(showError())
-    })
+    })*/
 }

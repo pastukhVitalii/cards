@@ -4,12 +4,11 @@ import Button from "../../../n1-main/m1-ui/common/button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {signIn} from "../../../n1-main/m2-bll/loginReducer";
 import {AppStateType} from "../../../n1-main/m2-bll/store";
-import {Redirect} from "react-router-dom";
-import Preloader from "../../../n1-main/m1-ui/common/Preloader";
 
-const Login = (props: any) => {
+const Login = () => {
 
-    const {isFetching, errorMessage, isAuth, isDisabled} = useSelector((state: AppStateType) => state.login)
+    const {isFetching, isDisabled} = useSelector((state: AppStateType) => state.login)
+    const token = useSelector((state: AppStateType) => state.login.token);
 
     const [email, setEmail] = useState('pastuh3@gmail.com');
     const [pass, setPass] = useState('!Asd1234');
@@ -46,7 +45,7 @@ const Login = (props: any) => {
     return (
 
         <>
-            <div>
+            <div>{token}
                 <div>
                     <Input type={inputStyle} placeholder={'e-mail'} value={email} onChange={setEmailCallBack}/>
                 </div>
